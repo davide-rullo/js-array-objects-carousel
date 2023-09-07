@@ -53,19 +53,8 @@ sliderImagesEl.insertAdjacentHTML('beforeend', slideMarkup)
 });
 
 
-/* 
+
  
-if(condition) {
-  // code to run
-} else {
-  // code to run
-}
- 
-// terary operator
- 
-condition ? 'code to run' : 'code to run'
- 
-*/
 
 
 /* 
@@ -99,12 +88,7 @@ Al click delle frecce, oltre al cambio di immagine attiva, gestire il cambio di 
 const thumbsElement = document.querySelector('.thumbnails')
 
 
-/*
-for (const key in slides) {
-  const slidePath = slides[key];
-  console.log(slidePath);
 
-*/
 
 
 slides.forEach(function (slide, index) {
@@ -211,3 +195,34 @@ prevEl.addEventListener('click', function () {
     nextThumb.classList.add('active')
 
 })
+
+
+//carosello che scorre in automatico
+
+setInterval(function() {
+    const currentSlide = slidesImages[activeSlide]
+    console.log("la slide corrente è " + currentSlide);
+    
+    currentSlide.classList.remove('active')
+
+   
+    const currentThumb = document.querySelector('.thumbnails > img.active')
+    console.log(currentThumb);
+    
+    currentThumb.classList.remove('active')
+
+    if (activeSlide === slidesImages.length - 1) {
+        activeSlide = 0
+    } else {
+        activeSlide++
+    }
+
+    const nextSlide = slidesImages[activeSlide]
+    nextSlide.classList.add('active')
+    const nextThumb = document.querySelectorAll('.thumb')[activeSlide]
+    nextThumb.classList.add('active')
+
+
+}, 5000);
+
+
